@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Currency Converter to PKR</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      background-color: #f4f4f4;
+    }
+    .converter-container {
+      background-color: white;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      text-align: center;
+    }
+    h1 {
+      font-size: 24px;
+      margin-bottom: 20px;
+    }
+    select, input {
+      padding: 10px;
+      margin: 10px 0;
+      width: 100%;
+      font-size: 16px;
+    }
+    button {
+      padding: 10px 10px;
+      background-color: #b13481;
+      color: white;
+      border: none;
+      cursor: pointer;
+      font-size: 16px;
+      margin-top: 10px;
+      width: 100%;
+    }
+    button:hover {
+      background-color: #97296d;
+    }
+    .result {
+      margin-top: 20px;
+      font-size: 20px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="converter-container">
+    <h1>Currency Converter to PKR</h1>
+    <select id="currency" required>
+      <option value="0">Select Currency</option>
+      <option value="USD">USD (US Dollar)</option>
+      <option value="EUR">EUR (Euro)</option>
+      <option value="GBP">GBP (British Pound)</option>
+      <option value="AUD">AUD (Australian Dollar)</option>
+    </select>
+    <input type="number" id="amount" placeholder="Enter amount" required>
+    <button onclick="convertCurrency()">Convert to PKR</button>
+    <div class="result" id="result"></div>
+  </div>
+
+  <script>
+    const exchangeRates = {
+      USD: 280,  // Example rate: 1 USD = 280 PKR
+      EUR: 300,  // Example rate: 1 EUR = 300 PKR
+      GBP: 350,  // Example rate: 1 GBP = 350 PKR
+      AUD: 185   // Example rate: 1 AUD = 185 PKR
+    };
+
+    function convertCurrency() {
+      const currency = document.getElementById("currency").value;
+      const amount = document.getElementById("amount").value;
+      const resultDiv = document.getElementById("result");
+
+      if (currency === "0" || amount === "") {
+        resultDiv.innerHTML = "Please select a currency and enter an amount.";
+        return;
+      }
+
+      const rate = exchangeRates[currency];
+      const result = amount * rate;
+      resultDiv.innerHTML = `${amount} ${currency} = ${result} PKR`;
+    }
+  </script>
+
+</body>
+</html>
